@@ -340,6 +340,14 @@ describe('ui-select tests', function() {
 
     expect($(el).scope().$select.selected).toEqual("I don't exist");
   });
+  
+  it('should keep the model intact when the tagging attribute is defined', function() {
+    scope.selection.selected.push("I am not on the list of choices");
+    var el = createUiSelect({tagging: true});
+    clickMatch(el);
+
+    expect($(el).scope().$select.selected).toEqual("I am not on the list of choices");
+  });
 
   it('should format new items using the tagging function when the attribute is a function', function() {
     scope.taggingFunc = function (name) {
